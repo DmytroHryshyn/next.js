@@ -7,16 +7,12 @@ import Layout from '../components/layout'
 import { getAllPostsForHome } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
-async function getAllPosts(preview: boolean) {
-  return getAllPostsForHome(preview)
-}
-
 export const metadata: Metadata = {
   title: `Next.js Blog Example with ${CMS_NAME}`,
 }
 
 export default async function Index({ preview }) {
-  const { edges } = await getAllPosts(preview)
+  const { edges } = await getAllPostsForHome(preview)
 
   const heroPost = edges[0]?.node
   const morePosts = edges.slice(1)
