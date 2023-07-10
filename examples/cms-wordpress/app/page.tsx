@@ -1,6 +1,4 @@
 import { Metadata } from 'next'
-import Head from 'next/head'
-import { GetStaticProps } from 'next'
 import Container from '../components/container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
@@ -17,16 +15,14 @@ export const metadata: Metadata = {
   title: `Next.js Blog Example with ${CMS_NAME}`,
 }
 
-export default function Index({ allPosts: { edges }, preview }) {
+export default async function Index({ preview }) {
+  const { edges } = await getAllPosts(preview)
+
   const heroPost = edges[0]?.node
   const morePosts = edges.slice(1)
 
   return (
     <Layout preview={preview}>
-      <Head>
-        {/* this tag can be removed*/}
-        <title>{`Next.js Blog Example with ${CMS_NAME}`}</title>
-      </Head>
       <Container>
         <Intro />
         {heroPost && (
@@ -45,13 +41,4 @@ export default function Index({ allPosts: { edges }, preview }) {
   )
 }
 
-// TODO: remove this function
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const allPosts = await getAllPostsForHome(preview)
-
-  return {
-    props: { allPosts, preview },
-    revalidate: 10,
-  }
-}
 export const revalidate = 10
