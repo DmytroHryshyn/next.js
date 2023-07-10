@@ -13,6 +13,17 @@ import Tags from '../../components/tags'
 import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
 import { CMS_NAME } from '../../lib/constants'
 
+// TODO: implement this function
+export async function generateStaticParams() {
+  return []
+}
+
+// TODO: implement this function
+async function getPosts() {}
+
+// TODO: implement this function
+async function getPost() {}
+
 export default function Post({ post, posts, preview }) {
   const morePosts = posts?.edges
 
@@ -59,7 +70,7 @@ export default function Post({ post, posts, preview }) {
     </Layout>
   )
 }
-
+// TODO: remove this function
 export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
@@ -77,6 +88,7 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
+// TODO: remove this function
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
 
@@ -85,3 +97,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: true,
   }
 }
+export const revalidate = 10
+export const dynamicParams = true
