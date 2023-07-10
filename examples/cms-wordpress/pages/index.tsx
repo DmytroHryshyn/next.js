@@ -9,8 +9,9 @@ import Layout from '../components/layout'
 import { getAllPostsForHome } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
 
-// TODO: implement this function
-async function getAllPosts() {}
+async function getAllPosts(preview: boolean) {
+  return getAllPostsForHome(preview)
+}
 
 export const metadata: Metadata = {
   title: `Next.js Blog Example with ${CMS_NAME}`,
