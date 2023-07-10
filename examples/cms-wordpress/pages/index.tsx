@@ -8,6 +8,10 @@ import Intro from '../components/intro'
 import Layout from '../components/layout'
 import { getAllPostsForHome } from '../lib/api'
 import { CMS_NAME } from '../lib/constants'
+
+// TODO: implement this function
+async function getAllPosts() {}
+
 export const metadata: Metadata = {
   title: `Next.js Blog Example with ${CMS_NAME}`,
 }
@@ -40,6 +44,7 @@ export default function Index({ allPosts: { edges }, preview }) {
   )
 }
 
+// TODO: remove this function
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const allPosts = await getAllPostsForHome(preview)
 
@@ -48,3 +53,4 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     revalidate: 10,
   }
 }
+export const revalidate = 10
