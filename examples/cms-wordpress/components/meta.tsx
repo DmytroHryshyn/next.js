@@ -4,8 +4,15 @@ import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants'
 
 export const metadata: Metadata = {
   icons: {
-    apple: '/favicon/apple-touch-icon.png',
-    icon: '/favicon/favicon-16x16.png',
+    apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
+    icon: [
+      {
+        url: '/favicon/favicon-16x16.png',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
     shortcut: '/favicon/favicon.ico',
   },
   manifest: '/favicon/site.webmanifest',
@@ -16,6 +23,9 @@ export const metadata: Metadata = {
     },
   },
   description: `A statically generated blog example using Next.js and ${CMS_NAME}.`,
+  openGraph: {
+    images: HOME_OG_IMAGE_URL,
+  },
 }
 
 export default function Meta() {
